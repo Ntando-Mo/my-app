@@ -73,4 +73,18 @@ Install all the required React packages by running:
 npm install
 
 ---
+
+### 4. Start the Application
+
+Launch the local development server:
+
+npm start
+
+---
+
+### 5. View in Browser
+
+Your default web browser should automatically open. If it does not, manually open your browser and navigate to http://localhost:3000 to view the live application.
+
+---
 *Developed by Ntando*
