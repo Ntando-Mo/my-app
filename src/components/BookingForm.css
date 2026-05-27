@@ -1,25 +1,19 @@
-/* Container */
+/* 1. Main Form Container */
+/* Frames the form with a clean border and soft shadow */
 .booking-wizard {
   max-width: 500px;
   margin: 40px auto;
   padding: 30px;
   background-color: white;
   border-radius: 16px;
-  /* NEW: Add a clean border and a soft shadow to frame the form */
-  border: 1px solid #dcdcdc; 
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
-  font-family: 'Karla', sans-serif;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Karla", sans-serif;
 }
 
-.required {
-  color: #e74c3c; /* A highly visible red */
-  margin-left: 4px;
-  font-weight: bold;
-}
-
-/* Typography */
+/* 2. Typography & Labels */
 .booking-wizard h2 {
-  font-family: 'Markazi Text', serif;
+  font-family: "Markazi Text", serif;
   font-size: 2.5rem;
   color: var(--dark-gray, #333);
   margin-bottom: 5px;
@@ -39,7 +33,15 @@
   font-size: 1rem;
 }
 
-/* Progress Tracker */
+/* Red asterisk for mandatory fields */
+.required {
+  color: #e74c3c;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* 3. Progress Tracker */
+/* The 3-step pill indicator at the top of the form */
 .progress-tracker {
   display: flex;
   justify-content: space-between;
@@ -69,7 +71,7 @@
   color: white;
 }
 
-/* Standard Inputs (Gray boxes from mockup) */
+/* 4. Standard Inputs (Text, Email, Select) */
 .styled-input {
   width: 100%;
   padding: 15px;
@@ -81,13 +83,14 @@
   box-sizing: border-box;
 }
 
+/* Highlights the box yellow when the user clicks inside to type */
 .styled-input:focus {
   outline: none;
   border-color: var(--primary-yellow, #f4ce14);
   background-color: white;
 }
 
-/* Time Pills Grid */
+/* 5. Time Selection Grid */
 .time-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -115,7 +118,7 @@
   border-color: var(--dark-gray, #333);
 }
 
-/* Guest Counter */
+/* 6. Guest Counter & Manual Input */
 .guest-counter {
   display: flex;
   align-items: center;
@@ -141,14 +144,34 @@
   transform: scale(0.95);
 }
 
-.guest-number {
+.guest-input {
   font-size: 1.2rem;
   font-weight: bold;
-  min-width: 40px;
+  width: 50px;
   text-align: center;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  color: var(--dark-gray, #333);
 }
 
-/* Summary Box (Step 2) */
+.guest-input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary-yellow, #f4ce14);
+}
+
+/* Hides default browser up/down arrows inside the number input */
+.guest-input::-webkit-outer-spin-button,
+.guest-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.guest-input[type="number"] {
+  -moz-appearance: textfield; /* Specific fix for Firefox */
+}
+
+/* 7. Utilities & Buttons */
+/* Summary box displayed on Step 2 */
 .summary-box {
   background-color: #f5f5f5;
   padding: 15px;
@@ -160,7 +183,6 @@
   border: 1px solid #e0e0e0;
 }
 
-/* Buttons */
 .mt-20 {
   margin-top: 30px;
 }
@@ -187,8 +209,16 @@
   width: 100%;
 }
 
-.primary-btn:hover {
+.primary-btn:hover:not(:disabled) {
   background-color: #e5c013;
+}
+
+/* Locked button state before form validation passes */
+.primary-btn:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .secondary-btn {
@@ -207,14 +237,84 @@
   background-color: #f5f5f5;
 }
 
-/* Disabled Button States */
-.primary-btn:disabled {
-  background-color: #e0e0e0;
-  color: #a0a0a0;
-  cursor: not-allowed;
-  transform: none; /* Prevents the hover/active click animations */
+.input-error {
+  border-color: #e74c3c;
+  background-color: #fdf5f4; /* A very faint red tint */
 }
 
-.primary-btn:disabled:hover {
-  background-color: #e0e0e0;
+/* Keeps the red border even when the user clicks back in, until they start typing */
+.input-error:focus {
+  border-color: #e74c3c;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin: 5px 0 0 0;
+  font-weight: bold;
+}
+
+.success-screen {
+  text-align: center;
+  padding: 20px 10px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-icon {
+  background-color: var(--primary-green, #495e57);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 4px 12px rgba(73, 94, 87, 0.3);
+}
+
+.success-screen h2 {
+  color: var(--primary-green, #495e57);
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.success-text {
+  font-size: 1.1rem;
+  color: var(--dark-gray, #333);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* The box that highlights where the email was sent */
+.email-notice {
+  background-color: #fdfaf0; /* A very soft yellow tint */
+  border: 1px solid #f4ce14;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.envelope-icon {
+  font-size: 2rem;
+  color: var(--primary-yellow, #f4ce14);
+}
+
+.email-notice p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--dark-gray, #333);
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* Smooth fade in for the success message */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

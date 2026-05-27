@@ -1,15 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import "./ConfirmedBooking.css";
 
 const ConfirmedBooking = () => {
+  const location = useLocation();
+  const formData = location.state?.formData;
+
+  // force the page to the top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <main
-      style={{ padding: "80px 20px", textAlign: "center", minHeight: "50vh" }}
-    >
-      <h1 style={{ color: "var(--primary-green)" }}>Booking Confirmed!</h1>
-      <p style={{ fontSize: "1.2rem", marginTop: "20px" }}>
-        Thank you for choosing Little Lemon. We look forward to serving you!
-      </p>
-    </main>
+    <div className="confirmation-container">
+      <div className="success-screen">
+        <div className="success-icon">✓</div>
+        <h2>Reservation Confirmed!</h2>
+
+        {formData ? (
+          <>
+            <p className="success-text">
+              Thank you, <strong>{formData.firstName}</strong>! Your table for{" "}
+              {formData.guests} on {formData.date} at {formData.time} has been
+              successfully booked.
+            </p>
+            <div className="email-notice">
+              <span className="envelope-icon">✉</span>
+              <p>
+                A confirmation email has been sent to
+                <br />
+                <strong>{formData.email}</strong>
+              </p>
+            </div>
+          </>
+        ) : (
+          <p className="success-text">
+            Thank you! Your table has been successfully booked. We look forward
+            to seeing you at Little Lemon.
+          </p>
+        )}
+
+        <Link to="/">
+          <button type="button" className="primary-btn mt-20 full-width">
+            Return to Home
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 };
 

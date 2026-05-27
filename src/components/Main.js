@@ -29,7 +29,7 @@ const Main = () => {
     const isSubmitted = submitAPI(formData);
 
     if (isSubmitted) {
-      navigate("/confirmed");
+      navigate("/confirmed", { state: { formData } }); 
     }
   };
 

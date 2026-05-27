@@ -1,0 +1,96 @@
+/* Container to keep it framed like the form was */
+.confirmation-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #dcdcdc; 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
+  font-family: 'Karla', sans-serif;
+}
+
+.success-screen {
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-icon {
+  background-color: var(--primary-green, #495e57);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 4px 12px rgba(73, 94, 87, 0.3);
+}
+
+.success-screen h2 {
+  color: var(--primary-green, #495e57);
+  font-family: 'Markazi Text', serif;
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.success-text {
+  font-size: 1.1rem;
+  color: var(--dark-gray, #333);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.email-notice {
+  background-color: #fdfaf0; 
+  border: 1px solid #f4ce14;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.envelope-icon {
+  font-size: 2rem;
+  color: var(--primary-yellow, #f4ce14);
+}
+
+.email-notice p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--dark-gray, #333);
+  text-align: left;
+  line-height: 1.4;
+}
+
+.primary-btn {
+  background-color: var(--primary-yellow, #f4ce14);
+  color: #333;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn.full-width {
+  width: 100%;
+}
+
+.primary-btn:hover {
+  background-color: #e5c013;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
