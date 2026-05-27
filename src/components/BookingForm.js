@@ -6,6 +6,9 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
 
+  // Step 1: Get today's date in YYYY-MM-DD format to prevent past bookings
+  const today = new Date().toISOString().split('T')[0];
+
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     setDate(selectedDate);
@@ -23,7 +26,18 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
     submitForm(formData);
   };
 
-  // If availableTimes hasn't loaded yet, default to an empty array to prevent crashes
+  // Step 2: React Client-Side Validation
+  // This function returns true ONLY if all form conditions are met
+  const isFormValid = () => {
+    return (
+      date !== '' && 
+      time !== '' && 
+      guests >= 1 && 
+      guests <= 10 && 
+      occasion !== ''
+    );
+  };
+
   const timesToMap = availableTimes || [];
 
   return (
@@ -35,7 +49,8 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
         id="res-date" 
         value={date} 
         onChange={handleDateChange} 
-        required 
+        min={today} /* HTML5 Validation: Cannot pick a past date */
+        required /* HTML5 Validation: Field cannot be empty */
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -43,6 +58,7 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
         id="res-time" 
         value={time} 
         onChange={(e) => setTime(e.target.value)}
+        required
       >
         {timesToMap.map((timeOption) => (
           <option key={timeOption} value={timeOption}>
@@ -55,11 +71,12 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
       <input 
         type="number" 
         placeholder="1" 
-        min="1" 
-        max="10" 
+        min="1" /* HTML5 Validation: Minimum 1 guest */
+        max="10" /* HTML5 Validation: Maximum 10 guests */
         id="guests" 
         value={guests} 
         onChange={(e) => setGuests(e.target.value)} 
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
@@ -67,12 +84,23 @@ const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
         id="occasion" 
         value={occasion} 
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
         <option>Birthday</option>
         <option>Anniversary</option>
       </select>
 
-      <input type="submit" value="Make Your Reservation" aria-label="Submit Reservation" />
+      {/* Step 2: Disable the button if the React validation fails */}
+      <input 
+        type="submit" 
+        value="Make Your Reservation" 
+        disabled={!isFormValid()} 
+        aria-label="Submit Reservation" 
+        style={{ 
+          cursor: isFormValid() ? 'pointer' : 'not-allowed',
+          opacity: isFormValid() ? 1 : 0.5 
+        }}
+      />
     </form>
   );
 };
