@@ -178,3 +178,63 @@ header img {
   box-shadow: none;
   max-width: 200px; /* Adjust based on your logo size */
 }
+
+/* --- HOMEPAGE COMPONENTS --- */
+
+.hero {
+  background-color: var(--primary-green);
+  color: var(--highlight-light);
+  padding: 40px 20px;
+  border-radius: var(--border-radius-main);
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  color: var(--primary-yellow);
+  margin-bottom: 0;
+}
+
+.hero h2 {
+  color: var(--highlight-light);
+  font-family: serif;
+}
+
+.hero p {
+  color: var(--highlight-light);
+  max-width: 400px;
+}
+
+button {
+  background-color: var(--primary-yellow);
+  color: var(--highlight-dark);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e5c010; /* Slightly darker yellow */
+}
+
+.specials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.testimonials {
+  background-color: var(--highlight-light);
+  padding: 40px 20px;
+  border-radius: var(--border-radius-main);
+  margin: 40px 0;
+  text-align: center;
+}
+
+.about {
+  padding: 40px 20px;
+}
