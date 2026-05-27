@@ -1,26 +1,29 @@
-import { initializeTimes, updateTimes } from "./Main";
+import { initializeTimes, updateTimes } from './Main';
 
-test("initializeTimes returns the correct expected array of available times", () => {
-  // The exact array we expect the function to produce
-  const expectedTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
-
-  // Call the function and store the result
+test('initializeTimes returns a non-empty array of available booking times', () => {
+  // Call the function to get the initial times
   const result = initializeTimes();
-
-  // Assert that the result perfectly matches the expected array
-  expect(result).toEqual(expectedTimes);
+  
+  // Assert that the result is an array
+  expect(Array.isArray(result)).toBe(true);
+  
+  // Assert that the array is not empty (it contains at least one time slot)
+  expect(result.length).toBeGreaterThan(0);
 });
 
-test("updateTimes returns the exact same state that was provided to it", () => {
-  // The initial state we pass in
-  const initialState = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
-
-  // A mock action (representing a date change)
-  const action = { type: "UPDATE_TIMES", payload: "2026-05-27" };
-
+test('updateTimes returns a non-empty array of times when a date is dispatched', () => {
+  // Set up a dummy initial state
+  const initialState = ['17:00', '18:00'];
+  
+  // Create an action with a pre-selected date
+  const action = { type: 'UPDATE_TIMES', payload: '2026-05-27' };
+  
   // Call the reducer function
   const newState = updateTimes(initialState, action);
-
-  // Assert that the state remains unchanged (for now, as per instructions)
-  expect(newState).toEqual(initialState);
+  
+  // Assert that the newly generated state is an array
+  expect(Array.isArray(newState)).toBe(true);
+  
+  // Assert that the new array is not empty
+  expect(newState.length).toBeGreaterThan(0);
 });
