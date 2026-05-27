@@ -9,7 +9,7 @@ const HomePage = () => {
     <main>
       <CallToAction />
       <Specials />
-      <CustomersSay />
+      <CustomersSay /> 
       <Chicago />
     </main>
   );
