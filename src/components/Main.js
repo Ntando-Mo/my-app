@@ -4,12 +4,12 @@ import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 
 // Step 2: Create initializeTimes function
-const initializeTimes = () => {
+export const initializeTimes = () => {
   return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 };
 
 // Step 2: Create updateTimes reducer function
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
       // For now, as per instructions, return the same times regardless of the date
