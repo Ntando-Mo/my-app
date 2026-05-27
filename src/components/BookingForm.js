@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 
-const BookingForm = () => {
-  // Step 3: Define state variables for each field
+// Step 1: Accept availableTimes and dispatch as props
+const BookingForm = ({ availableTimes, dispatch }) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('17:00');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
 
-  // Hardcoded state array for available times (as per instructions)
-  const [availableTimes, setAvailableTimes] = useState([
-    '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'
-  ]);
+  // NOTE: We deleted the local availableTimes useState from here!
 
-  // Handle the form submission
+  // Step 2: Dispatch the state change when the date field is changed
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+    // Send the new date to the reducer
+    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate }); 
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Reservation Details:");
@@ -21,7 +25,6 @@ const BookingForm = () => {
   };
 
   return (
-    // Step 2: Form structure converted to JSX
     <form style={{ display: 'grid', maxWidth: '200px', gap: '20px', margin: '0 auto' }} onSubmit={handleSubmit}>
       
       <label htmlFor="res-date">Choose date</label>
@@ -29,7 +32,7 @@ const BookingForm = () => {
         type="date" 
         id="res-date" 
         value={date} 
-        onChange={(e) => setDate(e.target.value)} 
+        onChange={handleDateChange} /* Updated to use the new handler */
         required 
       />
 
@@ -39,7 +42,7 @@ const BookingForm = () => {
         value={time} 
         onChange={(e) => setTime(e.target.value)}
       >
-        {/* Mapping through the availableTimes state array */}
+        {/* This now pulls directly from the availableTimes prop! */}
         {availableTimes.map((timeOption) => (
           <option key={timeOption} value={timeOption}>
             {timeOption}

@@ -1,14 +1,15 @@
 import React from 'react';
-import BookingForm from './BookingForm'; // Import the form component
+import BookingForm from './BookingForm';
 
-const BookingPage = () => {
+// Step 1: Accept the props from Main
+const BookingPage = ({ availableTimes, dispatch }) => {
   return (
     <main style={{ padding: '40px 20px', textAlign: 'center' }}>
       <h1>Reserve a Table</h1>
       <p style={{ marginBottom: '30px' }}>Please fill out the form below to secure your spot at Little Lemon.</p>
       
-      {/* Render the form here */}
-      <BookingForm />
+      {/* Step 1: Pass the props down to BookingForm */}
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
       
     </main>
   );
